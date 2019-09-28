@@ -15,13 +15,15 @@ const ValidateTfn = () => {
 
   const notify = (result) => {
 
-    if (result.isValid) {
-      toast.success(`${result.message}`, {
+    const {isValid, message} = result;
+
+    if (isValid) {
+      toast.success(`${message}`, {
         position: toast.POSITION.TOP_CENTER
       });
     }
     else {
-      toast.error(`${result.message}`, {
+      toast.error(`${message}`, {
         position: toast.POSITION.TOP_CENTER
       });
     }
