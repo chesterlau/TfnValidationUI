@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
@@ -8,10 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ValidateTfn = () => {
 
-  const state = { tfnNumber: "" };
+  const [tfnNumber, changeTfnNumber] = useState("");
   const xtraceId = uuid();
+
   const handleTextChange = (event) => {
-    state.tfnNumber = event.target.value;
+    changeTfnNumber(event.target.value);
   };
 
   const notify = (result) => {
@@ -31,12 +32,12 @@ const ValidateTfn = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
+    
     const headers = {
       "X-trace-ID": xtraceId
     }    
 
-    axios.post(`http://localhost:5000/api/tfn/validate?tfnNumber=${state.tfnNumber}`, null, {headers: headers})
+    axios.post(`http://localhost:5000/api/tfn/validate?tfnNumber=${tfnNumber}`, null, {headers: headers})
       .then(res => {        
         let validationResult = res.data.validationResult;
         notify(validationResult);
