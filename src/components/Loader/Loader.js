@@ -1,11 +1,20 @@
 import React from 'react';
+import './Loader.css';
 
-const Loader = () => {
-  return (
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  );
+const Loader = (props) => {
+
+  console.log(props.showLoader);
+
+  if(props.showLoader)
+  {
+    return (
+      <div className="loading">Loading&#8230;</div>
+    );
+  }
+  else
+  {
+    return(<div></div>);
+  }
 };
 
 export default Loader;

@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const ValidateTfn = () => {
 
   const [tfnNumber, changeTfnNumber] = useState("");
+  const [showLoader, changeShowLoader] = useState(false);
+
   const xtraceId = uuid();
 
   const handleTextChange = (event) => {
@@ -33,6 +35,8 @@ const ValidateTfn = () => {
   const handleSubmit = event => {
     event.preventDefault();
     
+    changeShowLoader(true);
+
     const headers = {
       "X-trace-ID": xtraceId
     }    
@@ -41,6 +45,10 @@ const ValidateTfn = () => {
       .then(res => {        
         let validationResult = res.data.validationResult;
         notify(validationResult);
+        changeShowLoader(false);
+      })
+      .catch(ex => {
+        changeShowLoader(false);
       });
   }
 
@@ -53,7 +61,7 @@ const ValidateTfn = () => {
             <label htmlFor="TfnNumberLabel">TFN Number</label>
             <input type="text" className="form-control" onChange={handleTextChange} />
           </div>
-          <button type="submit" className="btn btn-primary">Validate</button> <br /> <br /> <Loader />
+          <button type="submit" className="btn btn-primary">Validate</button> <br /> <br /> <Loader showLoader={showLoader} />
         </form>
       </div>
     </div>
