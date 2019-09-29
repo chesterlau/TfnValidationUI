@@ -6,12 +6,12 @@ import uuid from 'uuid';
 import './ValidateTfn.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+const xtraceId = uuid();
+
 const ValidateTfn = () => {
 
   const [tfnNumber, changeTfnNumber] = useState("");
   const [showLoader, changeShowLoader] = useState(false);
-
-  const xtraceId = uuid();
 
   const handleTextChange = (event) => {
     changeTfnNumber(event.target.value);
@@ -39,7 +39,7 @@ const ValidateTfn = () => {
 
     const headers = {
       "X-trace-ID": xtraceId
-    }    
+    };
 
     axios.post(`http://localhost:5000/api/tfn/validate?tfnNumber=${tfnNumber}`, null, {headers: headers})
       .then(res => {        

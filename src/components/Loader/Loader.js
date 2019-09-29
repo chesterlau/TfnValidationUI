@@ -13,7 +13,7 @@ const Loader = (props) => {
   }
   else
   {
-    return(<div></div>);
+    return(null);
   }
 };
 
