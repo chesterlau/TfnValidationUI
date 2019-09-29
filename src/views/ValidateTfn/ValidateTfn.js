@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import Loader from '../../components/Loader/Loader';
 import axios from 'axios';
 import uuid from 'uuid';
 import './ValidateTfn.css';
@@ -14,7 +15,6 @@ const ValidateTfn = () => {
   };
 
   const notify = (result) => {
-
     const {isValid, message} = result;
 
     if (isValid) {
@@ -27,7 +27,6 @@ const ValidateTfn = () => {
         position: toast.POSITION.TOP_CENTER
       });
     }
-
   };
 
   const handleSubmit = event => {
@@ -53,7 +52,7 @@ const ValidateTfn = () => {
             <label htmlFor="TfnNumberLabel">TFN Number</label>
             <input type="text" className="form-control" onChange={handleTextChange} />
           </div>
-          <button type="submit" className="btn btn-primary">Validate</button>
+          <button type="submit" className="btn btn-primary">Validate</button> <br /> <br /> <Loader />
         </form>
       </div>
     </div>
