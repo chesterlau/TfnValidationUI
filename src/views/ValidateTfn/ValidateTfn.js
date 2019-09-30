@@ -55,6 +55,8 @@ const ValidateTfn = () => {
   return (
     <div className="row validate-div">
       <div className="col-9">
+        <legend>TFN Validation</legend>
+        <hr />
         <ToastContainer autoClose={4000}/>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
